@@ -1,14 +1,12 @@
-FROM public.ecr.aws/lambda/nodejs:18 AS base
-
+FROM node:18-alpine AS base
 WORKDIR /var/task
+
 COPY package.json package-lock.json tsconfig.json ./
-RUN npm ci
+COPY overloop-testing-framework-frontend/ overloop-testing-framework-frontend/
+COPY overloop-testing-framework-server/ overloop-testing-framework-server/
+COPY scripts/ scripts/
+COPY src/ src/
+RUN npm run init && npm run build
 
-FROM base AS build
-COPY src/ ./
-RUN npm run build
-
-FROM base AS runner
-COPY --from=build /var/task/dist ./
-
-CMD ["index.handler"]
+EXPOSE 8080
+CMD node dist/index.js
