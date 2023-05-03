@@ -3,8 +3,7 @@
   "scripts": {
     "init": "./scripts/install.sh",
     "build": "tsc --project tsconfig.json",
-    "test": "npm run build && node -r dotenv/config dist/test.js",
-    "dev": "npm run build && node -r dotenv/config dist/index.js"
+    "dev": "nodemon src/index.ts"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -20,6 +19,7 @@
     "@types/express": "^4.17.17",
     "aws-sdk": "^2.1362.0",
     "dotenv": "^16.0.3",
+    "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }
