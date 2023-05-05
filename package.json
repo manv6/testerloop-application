@@ -1,4 +1,6 @@
 {
+  "name": "@testerloop/testerloop-app",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "init": "./scripts/install.sh",

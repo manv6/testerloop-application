@@ -9,4 +9,4 @@ COPY src/ src/
 RUN npm run init && npm run build
 
 EXPOSE 8080
-CMD node dist/index.js
+CMD node dist/serve.js
