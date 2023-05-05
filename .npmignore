@@ -1,5 +1,4 @@
 src/
-node_modules/
 scripts/
 .github/
 .env
