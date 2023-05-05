@@ -4,8 +4,8 @@ import express, { Express } from 'express';
 import cors, { CorsRequest } from 'cors';
 import parser from 'body-parser';
 import { expressMiddleware } from '@apollo/server/express4';
-import { createContext } from 'otf-server/context.js';
-import server from 'otf-server/server.js';
+import { createContext } from '@testerloop/server/dist/context.js';
+import server from '@testerloop/server/dist/server.js';
 import config from './config.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
