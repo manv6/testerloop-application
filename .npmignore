@@ -3,3 +3,4 @@ scripts/
 .github/
 .env
 .npmrc
+node_modules/
