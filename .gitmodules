@@ -1,3 +1,4 @@
-[submodule "overloop-testing-framework-frontend"]
-	path = overloop-testing-framework-frontend
-	url = git@github.com:overloop-io/overloop-testing-framework-frontend.git
+[submodule "testerloop-frontend"]
+	path = testerloop-frontend
+	url = git@github.com:testerloop/testerloop-frontend.git
+	branch = main

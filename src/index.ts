@@ -9,9 +9,9 @@ import server from '@testerloop/server/dist/server.js';
 import config from './config.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-const FRONTEND_PATH = path.join(__dirname, '../overloop-testing-framework-frontend/build');
+const FRONTEND_PATH = path.join(__dirname, '../testerloop-frontend/build');
 
-export async function useBackendMiddleware(app: Express, path = '/api/*') {
+export async function useBackendMiddleware(app: Express, path = '/api*') {
     await server.start();
     app.use(path, cors<CorsRequest>(), parser.json(), expressMiddleware(server, { context: createContext }));
 }

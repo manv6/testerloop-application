@@ -1,6 +1,6 @@
 set -ex
 
-cd ./overloop-testing-framework-frontend
+cd ./testerloop-frontend
 npm ci
 npm run build
 cp -a ./package.json ./build
