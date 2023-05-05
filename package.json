@@ -1,7 +1,8 @@
 {
   "name": "@testerloop/testerloop-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
+  "main": "dist/index.js",
   "scripts": {
     "init": "./scripts/install.sh",
     "build": "tsc --project tsconfig.json",
