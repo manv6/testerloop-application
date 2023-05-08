@@ -7,4 +7,4 @@ cp -a ./package.json ./build
 cd -
 
 # npm install $(npm pack ./overloop-testing-framework-server | tail -1)
-npm i
+npm ci
