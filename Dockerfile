@@ -11,9 +11,8 @@ RUN cd testerloop-frontend && npm run build
 FROM base AS server
 
 COPY package.json package-lock.json tsconfig.json ./
-COPY scripts/ scripts/
-COPY src/ src/
 RUN --mount=type=secret,id=npmrc,target=.npmrc npm ci
+COPY src/ src/
 RUN npm run build
 COPY --from=frontend /var/task/testerloop-frontend/build/ testerloop-frontend/build/
 
