@@ -13,7 +13,10 @@ jobs:
       contents: read
     steps:
       - name: Login to GitHub Package Registry
-        run: echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          ECR_REPOSITORY: ${{ vars.AWS_ECR_REPOSITORY }}
+        run: sed "s/<GITHUB_TOKEN>/${NPM_TOKEN}/" <.npmrc.shadow >.npmrc
       - name: Checkout Repository with Submodules
         uses: actions/checkout@v2
         with:
