@@ -12,16 +12,16 @@ jobs:
       packages: write
       contents: read
     steps:
-      - name: Login to GitHub Package Registry
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          ECR_REPOSITORY: ${{ vars.AWS_ECR_REPOSITORY }}
-        run: sed "s/<GITHUB_TOKEN>/${NPM_TOKEN}/" <.npmrc.shadow >.npmrc
       - name: Checkout Repository with Submodules
         uses: actions/checkout@v2
         with:
           submodules: 'true'
           token: ${{ secrets.GH_ACCESS_TOKEN }}
+      - name: Login to GitHub Package Registry
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          ECR_REPOSITORY: ${{ vars.AWS_ECR_REPOSITORY }}
+        run: sed "s/<GITHUB_TOKEN>/${NPM_TOKEN}/" <.npmrc.shadow >.npmrc
       - uses: actions/setup-node@v3
         with:
           node-version: 16
