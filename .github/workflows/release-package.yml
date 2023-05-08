@@ -6,32 +6,24 @@ on:
     types: [created]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Login to GitHub Package Registry
-        run: echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> ~/.npmrc
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci
-
   publish-gpr:
-    needs: build
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
     steps:
-      - uses: actions/checkout@v3
+      - name: Login to GitHub Package Registry
+        run: echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> ~/.npmrc
+      - name: Checkout Repository with Submodules
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
       - run: ./scripts/install.sh
-      - name: Login to GitHub Package Registry
-        run: echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> ~/.npmrc
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
