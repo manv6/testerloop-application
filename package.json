@@ -8,6 +8,9 @@
     "build": "tsc --project tsconfig.json",
     "dev": "nodemon src/serve.ts"
   },
+  "repository": {
+    "url": "git://github.com/testerloop/testerloop-app.git"
+  },
   "dependencies": {
     "@apollo/server": "^4.7.1",
     "@testerloop/server": "^0.1.0",
