@@ -27,14 +27,13 @@ CONTAINER_NAME=testerloop_app_container
 
 OLD_IMAGE_ID=$(docker images -q $IMAGE_NAME:latest)
 
-echo "Building and deploying new Docker container $CONTAINER_NAME"
-
 if [ "$(docker ps -a -q -f name=$CONTAINER_NAME)" ]; then
     echo "Stopping and removing old Docker container $CONTAINER_NAME"
     docker stop $CONTAINER_NAME
     docker rm $CONTAINER_NAME
 fi
 
+echo "Building new Docker image $IMAGE_NAME"
 docker build --secret id=npmrc,src=.npmrc --no-cache  -t $IMAGE_NAME -f Dockerfile .
 
 if [ "$OLD_IMAGE_ID" ]; then
@@ -42,6 +41,7 @@ if [ "$OLD_IMAGE_ID" ]; then
     docker rmi $OLD_IMAGE_ID -f
 fi
 
+echo "Deploying new Docker container $CONTAINER_NAME"
 docker run -d --name $CONTAINER_NAME -p 8080:8080 --env-file .env $IMAGE_NAME
 
 echo "Successfully built and deployed new Docker container $CONTAINER_NAME"
