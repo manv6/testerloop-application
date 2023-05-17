@@ -1,31 +1,31 @@
 {
-  "name": "@testerloop/testerloop-app",
-  "version": "0.1.1",
-  "type": "module",
-  "main": "dist/index.js",
-  "scripts": {
-    "init": "./scripts/install.sh",
-    "build": "tsc --project tsconfig.json",
-    "dev": "nodemon src/serve.ts"
-  },
-  "repository": {
-    "url": "git://github.com/testerloop/testerloop-app.git"
-  },
-  "dependencies": {
-    "@apollo/server": "^4.7.1",
-    "@testerloop/server": "^0.1.1",
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "zod": "^3.21.4"
-  },
-  "devDependencies": {
-    "@types/body-parser": "^1.19.2",
-    "@types/cors": "^2.8.13",
-    "@types/express": "^4.17.17",
-    "dotenv": "^16.0.3",
-    "nodemon": "^2.0.22",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
-  }
+    "name": "@testerloop/testerloop-app",
+    "version": "0.1.2",
+    "type": "module",
+    "main": "dist/index.js",
+    "scripts": {
+        "init": "./scripts/install.sh",
+        "build": "tsc --project tsconfig.json",
+        "dev": "nodemon src/serve.ts"
+    },
+    "repository": {
+        "url": "git://github.com/testerloop/testerloop-app.git"
+    },
+    "dependencies": {
+        "@apollo/server": "^4.7.1",
+        "@testerloop/server": "^0.1.2",
+        "body-parser": "^1.20.2",
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "zod": "^3.21.4"
+    },
+    "devDependencies": {
+        "@types/body-parser": "^1.19.2",
+        "@types/cors": "^2.8.13",
+        "@types/express": "^4.17.17",
+        "dotenv": "^16.0.3",
+        "nodemon": "^2.0.22",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.4"
+    }
 }
