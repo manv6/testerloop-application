@@ -1,7 +1,6 @@
 import * as url from 'url';
 import * as path from 'path';
 import express, { Express } from 'express';
-import cors, { CorsRequest } from 'cors';
 import parser from 'body-parser';
 import { expressMiddleware } from '@apollo/server/express4';
 import { createContext } from '@testerloop/server/dist/context.js';
@@ -13,7 +12,7 @@ const FRONTEND_PATH = path.join(__dirname, '../testerloop-frontend/build');
 
 export async function useBackendMiddleware(app: Express, path = '/api*') {
     await server.start();
-    app.use(path, cors<CorsRequest>(), parser.json(), expressMiddleware(server, { context: createContext }));
+    app.use(path, parser.json(), expressMiddleware(server, { context: createContext }));
 }
 
 export async function useFrontendMiddleware(app: Express) {
