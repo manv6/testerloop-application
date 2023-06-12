@@ -2,6 +2,7 @@ import * as url from 'url';
 import * as path from 'path';
 import express, { Express } from 'express';
 import parser from 'body-parser';
+import compression from 'compression';
 import { expressMiddleware } from '@apollo/server/express4';
 import { createContext } from '@testerloop/server/dist/context.js';
 import server from '@testerloop/server/dist/server.js';
@@ -27,6 +28,9 @@ export async function createServer() {
 
 export async function createDefaultServer() {
     const app = express();
+    app.use(compression({
+        filter: () => true,
+    }));
     await useBackendMiddleware(app);
     await useFrontendMiddleware(app);
     return app;
