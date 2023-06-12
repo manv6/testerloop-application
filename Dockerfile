@@ -15,6 +15,7 @@ RUN --mount=type=secret,id=npmrc,target=.npmrc npm ci
 COPY src/ src/
 RUN npm run build
 COPY --from=frontend /var/task/testerloop-frontend/build/ testerloop-frontend/build/
+COPY --from=frontend /var/task/testerloop-frontend/src/gql/__generated__/persistedQueries.json testerloop-frontend/src/gql/__generated__/
 
 EXPOSE 8080
 CMD node dist/serve.js
