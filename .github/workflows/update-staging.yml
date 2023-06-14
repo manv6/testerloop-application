@@ -25,6 +25,7 @@ jobs:
       - name: Update testerloop-server package
         run: |
           npm install @testerloop/server@latest
+          git diff --quiet && exit 0
           git add package.json package-lock.json
           git commit -m "Update testerloop-server to latest version"
       - name: Update frontend submodule
