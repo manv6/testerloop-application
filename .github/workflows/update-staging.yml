@@ -20,7 +20,7 @@ jobs:
         uses: fregante/setup-git-user@v2
       - name: Login to GitHub Package Registry
         env:
-          NPM_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
         run: echo -e "@testerloop:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" > ~/.npmrc
       - name: Update testerloop-server package
         run: |
