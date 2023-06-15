@@ -1,6 +1,6 @@
 {
     "name": "@testerloop/testerloop-app",
-    "version": "0.1.18",
+    "version": "0.1.19",
     "type": "module",
     "main": "dist/index.js",
     "scripts": {
