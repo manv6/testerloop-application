@@ -2,6 +2,8 @@
 
 This document will guide you through the process of setting up and running the Testerloop app monorepo. A script for building and mounting the app in a Docker container is provided. 
 
+This repository brings together the [testerloop-server](https://github.com/testerloop/testerloop-server) and the [testerloop-frontend](https://github.com/testerloop/testerloop-frontend) repositories. 
+
 ## Prerequisites
 
 Before getting started, make sure you have the following installed:
@@ -110,3 +112,13 @@ npm run dev
 ```
 
 You should now have the Testerloop app running locally on your machine.
+
+
+## Releases
+
+Releases are handled via github workflows which publish a new release. Only the testerloop-server is an npm package that requires a new release. 
+
+[Github version workflow](https://github.com/testerloop/testerloop-server/blob/master/.github/workflows/increment-version.yml)
+[Github release workflow](https://github.com/testerloop/testerloop-server/blob/master/.github/workflows/release-package.yml)
+
+These workflows are currently kicked-off manually.
