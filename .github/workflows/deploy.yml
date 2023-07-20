@@ -35,7 +35,7 @@ jobs:
           ECR_REPOSITORY: ${{ vars.AWS_ECR_REPOSITORY }}
         run: |
           sed "s/<GITHUB_TOKEN>/${NPM_TOKEN}/" <.npmrc.shadow >.npmrc
-          docker buildx build --secret id=npmrc,src=.npmrc  -t $ECR_REPOSITORY:$GITHUB_SHA --load .
+          docker buildx build --build-arg ENABLE_DB=true --secret id=npmrc,src=.npmrc  -t $ECR_REPOSITORY:$GITHUB_SHA --load .
           docker push $ECR_REPOSITORY:$GITHUB_SHA
           docker tag $ECR_REPOSITORY:$GITHUB_SHA $ECR_REPOSITORY:latest
           docker push $ECR_REPOSITORY:latest

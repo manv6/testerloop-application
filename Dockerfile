@@ -1,4 +1,8 @@
 FROM node:18-alpine AS base
+
+ARG ENABLE_DB=false
+ENV ENABLE_DB=$ENABLE_DB
+
 WORKDIR /var/task
 
 FROM base AS frontend
@@ -11,11 +15,32 @@ RUN cd testerloop-frontend && npm run build
 FROM base AS server
 
 COPY package.json package-lock.json tsconfig.json ./
+
 RUN --mount=type=secret,id=npmrc,target=.npmrc npm ci
+
 COPY src/ src/
+COPY node_modules/@testerloop/server/prisma/ prisma/
+
+RUN \
+if [ "${ENABLE_DB}" != "true" ]; then \
+npm remove prisma && rm -rf ./prisma ; \
+fi
+
+RUN \
+if [ "${ENABLE_DB}" = "true" ]; then \
+npx prisma generate ; \
+fi
+
 RUN npm run build
+
 COPY --from=frontend /var/task/testerloop-frontend/build/ testerloop-frontend/build/
 COPY --from=frontend /var/task/testerloop-frontend/src/gql/__generated__/persistedQueries.json testerloop-frontend/src/gql/__generated__/
 
 EXPOSE 8080
-CMD node dist/serve.js
+
+CMD if [ "${ENABLE_DB}" = "true" ]; then \
+   npx prisma migrate deploy && node dist/serve.js ; \
+else \
+   node dist/serve.js ; \
+fi
+
