@@ -35,6 +35,15 @@ jobs:
           ECR_REPOSITORY: ${{ vars.AWS_ECR_REPOSITORY }}
           REACT_APP_TESTERLOOP_API_KEY: ${{ secrets.REACT_APP_TESTERLOOP_API_KEY }}
           REACT_APP_GRAPHQL_API_URL: ${{ vars.REACT_APP_GRAPHQL_API_URL }}
+          REACT_APP_COGNITO_REGION: 'eu-west-3'
+          REACT_APP_PROJECT_REGION: 'eu-west-3'
+          REACT_APP_OAUTH_DOMAIN: ${{ vars.REACT_APP_OAUTH_DOMAIN }}
+          REACT_APP_USER_POOL_ID: ${{ vars.REACT_APP_USER_POOL_ID }}
+          REACT_APP_POOL_WEB_CLIENT_ID: ${{ vars.REACT_APP_POOL_WEB_CLIENT_ID }}
+          REACT_APP_IDENTITY_POOL_ID: ${{ vars.REACT_APP_IDENTITY_POOL_ID }}
+          REACT_APP_GOOGLE_CLIENT_ID: ${{ vars.REACT_APP_GOOGLE_CLIENT_ID }}
+          REACT_APP_REDIRECT_SIGN_IN: ${{ vars.REACT_APP_REDIRECT_SIGN_IN }}
+          REACT_APP_REDIRECT_SIGN_OUT: ${{ vars.REACT_APP_REDIRECT_SIGN_OUT }}
         run: |
           sed "s/<GITHUB_TOKEN>/${NPM_TOKEN}/" <.npmrc.shadow >.npmrc
           docker buildx build --build-arg ENABLE_DB=true --build-arg REACT_APP_TESTERLOOP_API_KEY=$REACT_APP_TESTERLOOP_API_KEY --build-arg REACT_APP_GRAPHQL_API_URL=$REACT_APP_GRAPHQL_API_URL --secret id=npmrc,src=.npmrc  -t $ECR_REPOSITORY:$GITHUB_SHA --load .
