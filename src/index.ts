@@ -6,8 +6,8 @@ import parser from 'body-parser';
 import compression from 'compression';
 import { z } from 'zod';
 import { expressMiddleware } from '@apollo/server/express4';
-import { createContext } from '@testerloop/server/dist/context.js';
-import server from '@testerloop/server/dist/server.js';
+import { createContext } from '@testerloop/server/dist/src/context.js';
+import server from '@testerloop/server/dist/src/server.js';
 import config from './config.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -52,7 +52,7 @@ export async function createDefaultServer() {
 }
 
 export async function startServer(app: Express, port = config.PORT) {
-    app.listen(port, function() {
+    app.listen(port, function () {
         console.log('[testerloop] Server listening on port: ', port);
     });
 }
