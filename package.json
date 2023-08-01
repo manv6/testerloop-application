@@ -1,6 +1,6 @@
 {
     "name": "@testerloop/testerloop-app",
-    "version": "0.1.23",
+    "version": "0.1.24",
     "type": "module",
     "main": "dist/index.js",
     "scripts": {
@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@apollo/server": "^4.7.1",
-        "@testerloop/server": "^0.1.16",
+        "@testerloop/server": "^0.1.18",
         "body-parser": "^1.20.2",
         "compression": "^1.7.4",
         "express": "^4.18.2",
