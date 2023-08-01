@@ -5,6 +5,7 @@
     "main": "dist/index.js",
     "scripts": {
         "init": "./scripts/install.sh",
+        "prebuild": "rm -rf dist",
         "build": "tsc --project tsconfig.json",
         "dev": "nodemon src/serve.ts"
     },

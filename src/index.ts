@@ -16,7 +16,7 @@ const APQ_PATH = path.join(__dirname, '../testerloop-frontend/src/gql/__generate
 
 export async function useBackendMiddleware(app: Express, path = '/api*') {
     await server.start();
-    app.use(path, parser.json(), expressMiddleware(server, { context: createContext }));
+    app.use(path, parser.json(), expressMiddleware(server as any, { context: createContext }));
 }
 
 export async function useFrontendMiddleware(app: Express) {
