@@ -85,14 +85,14 @@ jobs:
 
       - name: Deploy
         run: |
-          aws ecs update-service --cluster=$ECS_CLUSTER --service=$ECS_SERVICE --force-new-deployment
+          aws ecs update-service --cluster=$AWS_ECS_CLUSTER --service=$AWS_ECS_SERVICE --force-new-deployment
       - name: Verify Deployment
         run: |
           echo "Waiting 60 seconds before first deployment check..."
           sleep 60
           for i in {1..10}
           do
-            SERVICE_STATUS=$(aws ecs describe-services --cluster $ECS_CLUSTER --services $ECS_SERVICE --query "services[0].events[0].message" --output text)
+            SERVICE_STATUS=$(aws ecs describe-services --cluster $AWS_ECS_CLUSTER --services $AWS_ECS_SERVICE --query "services[0].events[0].message" --output text)
             if [[ "$SERVICE_STATUS" == *"has reached a steady state"* ]]
             then
               echo "Deployment successful."
