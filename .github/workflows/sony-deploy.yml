@@ -1,11 +1,8 @@
-name: MULTITENANT - Deploy to ECS including DB migrations
+name: SONY - deploy app to Overloop ECS for testing changes
 
 on:
-  push:
-    branches:
-      - multitenant
   workflow_dispatch:
-    
+
 jobs:
   build:
     name: Build and Push to ECR
@@ -49,7 +46,7 @@ jobs:
           REACT_APP_REDIRECT_SIGN_OUT: ${{ vars.REACT_APP_REDIRECT_SIGN_OUT }}
         run: |
           sed "s/<GITHUB_TOKEN>/${NPM_TOKEN}/" <.npmrc.shadow >.npmrc
-          docker buildx build --build-arg ENABLE_DB=true \
+          docker buildx build \
           --build-arg REACT_APP_TESTERLOOP_API_KEY=$REACT_APP_TESTERLOOP_API_KEY \
           --build-arg REACT_APP_GRAPHQL_API_URL=$REACT_APP_GRAPHQL_API_URL \
           --build-arg REACT_APP_COGNITO_REGION=$REACT_APP_COGNITO_REGION \

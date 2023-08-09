@@ -1,4 +1,4 @@
-name: Build & Publish Testerloop App Package
+name: Build & Publish Testerloop App NPM Package (w/ Github Release)
 
 on:
   workflow_dispatch:
