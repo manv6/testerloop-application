@@ -2,6 +2,8 @@
 
 This document will guide you through the process of setting up and running the Testerloop app monorepo. A script for building and mounting the app in a Docker container is provided. 
 
+This repository brings together the [testerloop-server](https://github.com/testerloop/testerloop-server) and the [testerloop-frontend](https://github.com/testerloop/testerloop-frontend) repositories. 
+
 ## Prerequisites
 
 Before getting started, make sure you have the following installed:
@@ -110,3 +112,40 @@ npm run dev
 ```
 
 You should now have the Testerloop app running locally on your machine.
+
+
+## Releases
+
+Releases and deployments are handled by Github Actions. The `testerloop-server` repo is published as an NPM package and the `testerloop-frontend` repo is a submodule within `testerloop-app`. The `testerloop-app` itself is published as an NPM package and is deployed to our staging site in ECS as a Docker Image.
+
+### To release a new version of the app for the purposes of a SONY bugfix release, follow these steps
+
+1. Increment the `testerloop-app` version number in the `package.json` file of the testerloop-app repo
+2. [If making BACKEND changes] Update the version number in the `package.json` file of the `testerloop-server` repo
+3. [If making BACKEND changes] Increment the `testerloop-server` Github version number to match the version above and trigger this [Github release workflow](https://github.com/testerloop/testerloop-server/blob/master/.github/workflows/release-package.yml)
+4. [If making BACKEND changes] Update the `testerloop-server` package version in the `testerloop-app` `package.json` file to match the new version number
+5. [If making FRONTEND changes]Update the frontend submodule to point to the required commit (if making frontend changes)
+
+    ```bash
+    cd testerloop-frontend
+    git checkout <commit-hash>
+    cd ..
+    ```
+
+6. Run an `npm install` in the testerloop-app repo to ensure correct package versions are installed and the `package-lock.json` file is updated
+7. Run the docker script to build the app and run it in a local container for testing
+
+    ```bash
+    sh ./scripts/docker.sh
+    ```
+
+8. Once testing is complete, push the changes to the `testerloop-app` repo
+9. There are two workflows for creating a new NPM package:
+        - [Triggered with Github Release](https://github.com/testerloop/testerloop-app/actions/workflows/release-package.yml)
+        - [Triggered manually](https://github.com/testerloop/testerloop-app/actions/workflows/sony-release-package.yml)
+
+### To deploy multitenant changes to the app to staging for our own testing, follow these steps
+
+1. Checkout the `multitenant` branch
+2. Follow steps 2-8 above
+3. Push changes to the `multitenant` branch which will trigger this workflow: [MULTITENANT - Deploy to ECS including DB migrations](https://github.com/testerloop/testerloop-app/actions/workflows/deploy.yml)

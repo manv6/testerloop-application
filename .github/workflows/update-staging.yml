@@ -1,0 +1,42 @@
+name: Update testerloop-app staging site
+
+on: 
+  workflow_dispatch:
+        
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.TESTERLOOP_ACCESS_TOKEN }}
+          submodules: true
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - name: Configure Git
+        uses: fregante/setup-git-user@v2
+      - name: Login to GitHub Package Registry
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: echo -e "@testerloop:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - name: Update testerloop-server package
+        run: |
+          npm install @testerloop/server@latest
+          git diff --quiet && exit 0
+          git add package.json package-lock.json
+          git commit -m "Update testerloop-server to latest version"
+      - name: Update frontend submodule
+        run: |
+          git submodule update --remote
+          git diff --quiet && exit 0
+          git add testerloop-frontend
+          git commit -m "Update frontend submodule"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: "Update staging site with latest frontend/backend"
+          branch: "version-bump"
+          token: ${{ secrets.TESTERLOOP_ACCESS_TOKEN }}
