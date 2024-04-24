@@ -143,6 +143,9 @@ Releases and deployments are handled by Github Actions. The `testerloop-server` 
 9. There are two workflows for creating a new NPM package:
         - [Triggered with Github Release](https://github.com/testerloop/testerloop-app/actions/workflows/release-package.yml)
         - [Triggered manually](https://github.com/testerloop/testerloop-app/actions/workflows/sony-release-package.yml)
+10. For creating a new release for Sony, add a new release through the Github UI [here](https://github.com/testerloop/testerloop-app/releases/new)
+11. Create a new tag for the release number
+12. Set it as not the latest release (latest stable release for Sony remains `0.1.24`
 
 ### To deploy multitenant changes to the app to staging for our own testing, follow these steps
 
