@@ -1,6 +1,6 @@
 {
     "name": "@testerloop/testerloop-app",
-    "version": "0.1.35-sony",
+    "version": "0.1.36-sony",
     "type": "module",
     "main": "dist/index.js",
     "scripts": {
