@@ -13,7 +13,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout Repository with Submodules
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: "true"
           token: ${{ secrets.GH_ACCESS_TOKEN }}
