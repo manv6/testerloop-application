@@ -1,6 +1,6 @@
 {
-    "name": "@testerloop/testerloop-app",
-    "version": "0.1.41-sony",
+    "name": "testerloop-application",
+    "version": "0.2.0",
     "type": "module",
     "main": "dist/index.js",
     "scripts": {
@@ -10,14 +10,14 @@
         "dev": "nodemon src/serve.ts"
     },
     "repository": {
-        "url": "git://github.com/testerloop/testerloop-app.git"
+        "url": "git://github.com/manv6/testerloop-application.git"
     },
     "dependencies": {
         "@apollo/server": "^4.7.1",
-        "@testerloop/server": "^0.1.23",
         "body-parser": "^1.20.2",
         "compression": "^1.7.4",
         "express": "^4.18.2",
+        "testerloop-server": "^0.2.0",
         "zod": "^3.21.4"
     },
     "overrides": {

@@ -18,13 +18,9 @@ jobs:
           node-version: 18
       - name: Configure Git
         uses: fregante/setup-git-user@v2
-      - name: Login to GitHub Package Registry
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: echo -e "@testerloop:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" > ~/.npmrc
       - name: Update testerloop-server package
         run: |
-          npm install @testerloop/server@latest
+          npm install testerloop-server@latest
           git diff --quiet && exit 0
           git add package.json package-lock.json
           git commit -m "Update testerloop-server to latest version"

@@ -1,4 +1,4 @@
 [submodule "testerloop-frontend"]
 	path = testerloop-frontend
-	url = git@github.com:testerloop/testerloop-frontend.git
+	url = git@github.com:manv6/testerloop-frontend.git
 	branch = main

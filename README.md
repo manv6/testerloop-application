@@ -51,14 +51,6 @@ AWS_BUCKET_NAME=YOUR_AWS_BUCKET_NAME
 EXPIRES_IN=3600
 ```
 
-## Step 4: Update .npmrc File
-
-Open the .npmrc file and replace <GITHUB_TOKEN> with the token provided by the Testerloop team:
-
-```bash
-@testerloop:registry=https://npm.pkg.github.com/
-//npm.pkg.github.com/:_authToken=<GITHUB_TOKEN>
-```
 
 ## Step 5: Run the Docker Install Script
 
@@ -70,9 +62,9 @@ Run the install script:
 sh ./scripts/docker.sh
 ```
 
-This script will install the latest changes to the `testerloop-frontend` submodule and `@testerloop/server` package, build the app and run it in a container.
+This script will install the latest changes to the `testerloop-frontend` submodule and `testerloop-server` package, build the app and run it in a container.
 
-_A limitation of this is that the `@testerloop/server` package won't be updated with all changes made to the `testerloop-server` repo until a new version of the package is published._
+_A limitation of this is that the `testerloop-server` package won't be updated with all changes made to the `testerloop-server` repo until a new version of the package is published._
 
 You should now have the Testerloop app running locally on your machine at `http://localhost:8080`.
 

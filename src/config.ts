@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { envFormat as serverEnvFormat } from '@testerloop/server/dist/config.js';
+// @ts-ignore
+import { envFormat as serverEnvFormat } from 'testerloop-server/dist/config.js';
 
 const envFormat = serverEnvFormat.extend({
     PORT: z.coerce.number()

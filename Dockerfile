@@ -57,7 +57,7 @@ RUN \
 if [ "${ENABLE_DB}" != "true" ]; then \
 npm remove prisma && rm -rf ./prisma ; \
 else \
-cp -r node_modules/@testerloop/server/prisma ./prisma && npx prisma generate ; \
+cp -r node_modules/testerloop-server/prisma ./prisma && npx prisma generate ; \
 fi
 
 RUN npm run build
